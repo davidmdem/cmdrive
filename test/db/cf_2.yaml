@@ -1,8 +1,8 @@
+---
 cloudfile:
-  name: '1MB.dat'
+  name: 'hello.txt'
   owner: 'test-owner'
-  size: 1024
+  size: 10
   policies: [
     'any'
   ]
-  

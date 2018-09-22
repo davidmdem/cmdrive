@@ -1,21 +1,24 @@
 cmdrive:
   default:
     db: local
+    service: local
   cloud_folder: 'cmdrive'
-  local_folder: 'cmdrive_sync'
   db:
     local:
       kind: local
-      CMDRIVE_DB_FOLDER: './localdb'
+      CMDRIVE_DB_FOLDER: '../test/db'
     mongo: 
       kind: mongo
       MONGO_CONNECTION_STRING: ''
   service:
+    local:
+      kind: local
+      CMDRIVE_STORAGE_FOLDER: '../test/storage'
     azure:
       kind: azure
       credentials:
-        AZURE_STORAGE_KEY: ''
         AZURE_STORAGE_ACCOUNT: ''
+        AZURE_STORAGE_KEY: ''
     google:
       kind: google
       credentials:

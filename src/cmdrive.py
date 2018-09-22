@@ -11,7 +11,7 @@ Options:
 
 """
 
-from os import environ
+import os
 from docopt import docopt
 from CloudFile import CloudFile
 from db.LocalDBProvider import LocalDBProvider
@@ -20,11 +20,11 @@ def main():
     arguments = docopt(__doc__, version='Cloudmesh Drive 0.1')
     
     print("Enter main")
-    
-    localdb = LocalDBProvider()
+    db_path = os.environ.get('CMDRIVE_DB_FOLDER') or ''
 
-    localdb.list_files()
-
+    localdb = LocalDBProvider(db_path)
+    local_files = localdb.list_files()
+    local_dirs = localdb.list_dirs()
     print("done")
 
 if __name__ == "__main__":

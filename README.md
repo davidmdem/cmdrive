@@ -20,6 +20,7 @@ See Libcloud's [Google Storage Driver Documentation](https://libcloud.readthedoc
 - [ ] Google Drive integration
 - [ ] Box integration
 - [ ] AWS integration
+- [ ] Command line option for cmdrive.yaml path
 - [ ] Local storage service for keeping some things on the local host. Would also be a helpful default for testing purposes.
 
 ## Design Questions
