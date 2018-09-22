@@ -6,14 +6,14 @@ cmdrive:
   db:
     local:
       kind: local
-      CMDRIVE_DB_FOLDER: '../test/db'
+      CMDRIVE_DB_FOLDER: 'test/db'
     mongo: 
       kind: mongo
       MONGO_CONNECTION_STRING: ''
   service:
     local:
       kind: local
-      CMDRIVE_STORAGE_FOLDER: '../test/storage'
+      CMDRIVE_STORAGE_FOLDER: 'test/storage'
     azure:
       kind: azure
       credentials:

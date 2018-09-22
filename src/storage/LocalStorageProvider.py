@@ -1,8 +1,15 @@
 import os
+import yaml
 from storage.StorageProviderABC import StorageProviderABC
 
 class LocalStorageProvider(StorageProviderABC):
     
+    def __init__(self, storage_path):
+        '''
+        todo: doc
+        '''
+        self.storage_path = storage_path
+
     def list_files(self):
         '''
         get a list of stored files

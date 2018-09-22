@@ -17,3 +17,9 @@ class CloudFile():
             'all'
         ]
         
+    def from_local_path(self, path):
+        pass
+
+    def from_obj(self, obj):
+        pass
+        
