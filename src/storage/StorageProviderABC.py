@@ -50,11 +50,3 @@ class StorageProviderABC(metaclass = abc.ABCMeta):
         :return: a list of CloudFiles
         '''
         pass
-
-    @abc.abstractmethod
-    def list_dirs(self):
-        '''
-        get a list of directories in this provider
-        :return: a list of CloudFiles
-        '''
-        pass

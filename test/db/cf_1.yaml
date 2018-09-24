@@ -1,9 +1,9 @@
 ---
-cloudfile:
-  name: '1MB.dat'
-  owner: 'test-owner'
-  size: 1024
-  service: local
-  policies: [
-    'any'
-  ]
+name: '1MB.dat'
+owner: 'test-owner'
+size: 1024
+service: local
+url: '/1MB.dat'
+policies: [
+  'any'
+]

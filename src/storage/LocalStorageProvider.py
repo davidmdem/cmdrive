@@ -10,6 +10,9 @@ class LocalStorageProvider(StorageProviderABC):
         '''
         self.storage_path = storage_path
 
+    def get(self):
+        pass
+
     def list_files(self):
         '''
         get a list of stored files
