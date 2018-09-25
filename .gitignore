@@ -1,3 +1,10 @@
+# Test local db and storage files
+test/db/*
+!test/db/README.md
+
+test/storage/*
+!test/storage/README.md
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
