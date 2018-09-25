@@ -1,5 +1,5 @@
-import datetime
 import getpass
+import datetime
 from os.path import isfile, abspath, basename, getsize
 
 class CloudFile():

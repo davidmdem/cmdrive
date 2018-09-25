@@ -15,6 +15,7 @@ cmdrive:
       CMDRIVE_STORAGE_FOLDER: '../test/storage'
     azure:
       kind: azure
+      container: 'cmdrive'
       credentials:
         AZURE_STORAGE_ACCOUNT: ''
         AZURE_STORAGE_KEY: ''

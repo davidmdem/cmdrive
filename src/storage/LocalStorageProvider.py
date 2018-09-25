@@ -6,23 +6,25 @@ from os.path import abspath
 from CloudFile import CloudFile
 from storage.StorageProviderABC import StorageProviderABC
 
+
 class LocalStorageProvider(StorageProviderABC):
+    """
+    A storage provider that uses a local file system or network drive path to store files.
+    """
     
     def __init__(self, storage_path):
         '''
-        Initialize storage path
+        Initialize storage path.
         '''
         self._path = Path(storage_path)
 
     def add(self, local_path):
         '''
-        add a new CloudFile to the database
+        Upload a new file.
         
         :param local_path: Path to a file that will be stored.
         :return: a CloudFile with resource information filled in
         '''
-        local_path = abspath(local_path)
-
         cloud_file = CloudFile().from_local_path(local_path)
         cloud_file.url = abspath(self._path.joinpath(cloud_file.name))
         cloud_file.service = 'local'
@@ -42,7 +44,7 @@ class LocalStorageProvider(StorageProviderABC):
 
     def delete(self, cloud_file):
         '''
-        delete a file from the database
+        Delete a file from the database
 
         :param cloud_file: the cloud file entry being deleted
         '''

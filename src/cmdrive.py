@@ -16,12 +16,13 @@ Options:
   --config      Location of a cmdrive.yaml file
 """
 
-import os
 import yaml
+from os import environ
 from docopt import docopt
 from CloudFile import CloudFile
 from db.LocalDBProvider import LocalDBProvider
 from storage.LocalStorageProvider import LocalStorageProvider
+from storage.AzureStorageProvider import AzureStorageProvider
 
 class cmdrive:
 
@@ -43,15 +44,22 @@ class cmdrive:
         db_provider = self._conf.get('default').get('db')
 
         if db_provider == 'local':
-            db_path =  self._conf.get('db').get('local').get('CMDRIVE_DB_FOLDER') or os.environ.get('CMDRIVE_DB_FOLDER')
+            db_path =  self._conf.get('db').get('local').get('CMDRIVE_DB_FOLDER') or environ.get('CMDRIVE_DB_FOLDER')
             self._db = LocalDBProvider(db_path)
 
-        # Set storage providers. Can be many.
-        storage_path = self._conf.get('service').get('local').get('CMDRIVE_STORAGE_FOLDER') or os.environ.get('CMDRIVE_STORAGE_FOLDER')
+        # Check for local storage provider.
+        storage_path = self._conf.get('service').get('local').get('CMDRIVE_STORAGE_FOLDER') or environ.get('CMDRIVE_STORAGE_FOLDER')
         if storage_path:
             self._providers['local'] = LocalStorageProvider(storage_path)
 
-        # Set a the default storage provider.
+        # Check for Azure provider.
+        az_conf = self._conf.get('service').get('azure')
+        if az_conf:
+            az_act = az_conf.get('credentials').get('AZURE_STORAGE_ACCOUNT') or environ.get('AZURE_STORAGE_ACCOUNT')
+            az_key = az_conf.get('credentials').get('AZURE_STORAGE_KEY') or environ.get('AZURE_STORAGE_KEY')
+            self._providers['azure'] = AzureStorageProvider(az_act, az_key, az_conf.get('container'))
+
+        # Set a default storage provider.
         default_storage_provider = self._conf.get('default').get('service')
         self._providers['default'] = self._providers[default_storage_provider]
 
@@ -120,4 +128,3 @@ if __name__ == "__main__":
         cd.delete(arguments['FILE'])
     elif arguments['get'] and arguments['FILE']:
         cd.get(arguments['FILE'], arguments['DEST_FOLDER'])
-

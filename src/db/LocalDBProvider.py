@@ -18,6 +18,7 @@ class LocalDBProvider(DBProviderABC):
     def get(self, file_name):
         '''
         Get a CloudFile object corresponding to the given file name
+        
         :param file_name: Corresponds to the CloudFile's `name`.
         :return: A CloudFile object
         '''
