@@ -39,7 +39,9 @@ The default [`cmdrive.yaml`](src/cmdrive.yaml) is setup to use a local database 
 
 ```
 git clone https://github.com/davidmdem/cmdrive
-cd cmdrive/src
+cd cmdrive
+pip install -r requirements.txt
+cd src
 ```
 
 **Add a file to the default storage service**
@@ -60,7 +62,6 @@ python cmdrive.py get hello.txt ../test
 
 ## TODO
 
-- [ ] Get more clarity on command line api
 - [ ] See what to do about policies
 - [ ] Consider merging the db and cloud provider base classes
 - [ ] MongoDB database provider
@@ -68,4 +69,4 @@ python cmdrive.py get hello.txt ../test
 - [ ] Box integration
 - [ ] AWS integration
 - [ ] Command line option for cmdrive.yaml path
-
+- [ ] Better way to determine which storage providers to load

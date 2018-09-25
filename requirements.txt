@@ -1,5 +1,3 @@
 docopt
-colorama
-termcolor
 apache-libcloud
 pyyaml

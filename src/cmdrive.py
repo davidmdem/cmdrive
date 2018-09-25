@@ -57,7 +57,8 @@ class cmdrive:
         if az_conf:
             az_act = az_conf.get('credentials').get('AZURE_STORAGE_ACCOUNT') or environ.get('AZURE_STORAGE_ACCOUNT')
             az_key = az_conf.get('credentials').get('AZURE_STORAGE_KEY') or environ.get('AZURE_STORAGE_KEY')
-            self._providers['azure'] = AzureStorageProvider(az_act, az_key, az_conf.get('container'))
+            if az_act and az_key:
+                self._providers['azure'] = AzureStorageProvider(az_act, az_key, az_conf.get('container'))
 
         # Set a default storage provider.
         default_storage_provider = self._conf.get('default').get('service')
