@@ -31,9 +31,32 @@ See Libcloud's [Azure Blobs Storage Driver Documentation](https://libcloud.readt
 
 See Libcloud's [Google Storage Driver Documentation](https://libcloud.readthedocs.io/en/latest/storage/drivers/google_storage.html) for instructions on how to setup a storage account and generate access keys.
 
-## Run
+## Getting Started
 
 The default [`cmdrive.yaml`](src/cmdrive.yaml) is setup to use a local database and storage provider. 
+
+**Download**
+
+```
+git clone https://github.com/davidmdem/cmdrive
+cd cmdrive/src
+```
+
+**Add a file to the default storage service**
+```
+python cmdrive.py add ../test/files/hello.txt
+```
+
+**List all files**
+```
+python cmdrive.py ls
+```
+
+**Download file**
+```
+python cmdrive.py get hello.txt ../test
+```
+
 
 ## TODO
 
