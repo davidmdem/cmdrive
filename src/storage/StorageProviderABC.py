@@ -33,20 +33,3 @@ class StorageProviderABC(metaclass = abc.ABCMeta):
         :param cloud_file: the cloud file entry being deleted
         '''
         pass
-
-    @abc.abstractmethod
-    def update(self, cloud_file):
-        '''
-        update a file
-        :param cloud_file: the cloud file entry being retrieved
-        :return: the downloaded cloud file binary
-        '''
-        pass
-
-    @abc.abstractmethod
-    def list_files(self, dir):
-        '''
-        get a list of files stored in a directory
-        :return: a list of CloudFiles
-        '''
-        pass

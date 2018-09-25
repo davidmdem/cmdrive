@@ -1,9 +1,0 @@
----
-name: 'hello.txt'
-owner: 'test-owner'
-size: 10
-service: local
-url: '/level1/hello.txt'
-policies: [
-  'any'
-]

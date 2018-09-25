@@ -1,47 +1,49 @@
 import os
 import yaml
+import shutil
+from pathlib import Path
+from os.path import abspath
+from CloudFile import CloudFile
 from storage.StorageProviderABC import StorageProviderABC
 
 class LocalStorageProvider(StorageProviderABC):
     
     def __init__(self, storage_path):
         '''
-        todo: doc
+        Initialize storage path
         '''
-        self.storage_path = storage_path
+        self._path = Path(storage_path)
 
-    def get(self):
-        pass
-
-    def list_files(self):
-        '''
-        get a list of stored files
-        :return: a list of CloudFiles
-        '''
-        pass
-
-    def add(self, cloud_file):
+    def add(self, local_path):
         '''
         add a new CloudFile to the database
         
-        todo: not sure if this should take a cloud file entry or not. path, policies might be a better choice
-        
-        :param cloud_file: a CloudFile. todo
+        :param local_path: Path to a file that will be stored.
         :return: a CloudFile with resource information filled in
         '''
-        pass
+        local_path = abspath(local_path)
+
+        cloud_file = CloudFile().from_local_path(local_path)
+        cloud_file.url = abspath(self._path.joinpath(cloud_file.name))
+        cloud_file.service = 'local'
+
+        shutil.copy(local_path, cloud_file.url)
+        return cloud_file
+
+    def get(self, cloud_file, local_dest):
+        '''
+        Download the file from the `cloud_file.url` to a local folder.
+
+        :param cloud_file: A cloud file entry from the db. 
+        :param local_dest: A local path where the cloud file will be downloaded.
+        '''
+        local_dest = Path(local_dest)
+        shutil.copy(cloud_file.url, local_dest.joinpath(cloud_file.name))
 
     def delete(self, cloud_file):
         '''
         delete a file from the database
+
         :param cloud_file: the cloud file entry being deleted
         '''
-        pass
-
-    def update(self, cloud_file):
-        '''
-        update a file
-        :param cloud_file: the cloud file entry being updated
-        :return: the updated CloudFile
-        '''
-        pass
+        os.remove(cloud_file.url)
